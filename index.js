@@ -23,12 +23,73 @@ client.on('ready', () => {
 
 const prefix = '!'; // just an example, change to whatever you want
 var apikey = "0AY2GAYCRBBG";
+const apiWeatherKey = "c8bc6cc6fcb34e7ca0951102210402";
+
+const getWeather = async (city) => {
+    try {
+        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=c8bc6cc6fcb34e7ca0951102210402&q=${city}&aqi=no`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 client.on('messageCreate', async message => {
     if (!message.content.startsWith(prefix)) return;
 
     const args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(prefix.length).toLowerCase(); // case INsensitive, without prefix
+
+    if (cmd == "clima") {
+
+        if (args[1] != "") {
+            if (args[1] && args[2]) {
+                const city = args[1] + " " + args[2];
+                const cityData = await getWeather(city);
+                if (cityData) {
+                    const temp_c = cityData?.current?.temp_c;
+                    const image = "https://" + cityData?.current?.condition?.icon.split('//')[1];
+                    const exampleEmbed = new MessageEmbed()
+                        .setColor('BLUE')
+                        .setTitle(`CLIMA DE ${cityData?.location?.name}`)
+                        .setDescription(`Hola. ${message.author.username}, el clima actual de ${cityData.location.name} es: ${temp_c}°. ${"\n"} ${temp_c <= 15 ? "Un clima bastante agradable e intersubjetivo. 🥶" : "Este clima es intriseco para cada individuo. 🔥"} `)
+                        .setImage(image)
+                        .setTimestamp()
+                        .setFooter('Made by Betoml5');
+
+                    message.channel.send({ embeds: [exampleEmbed] });
+                } else {
+                    message.channel.send("No encontre datos de esta ciudad.")
+                }
+            } else {
+                const city = args[1] + " " + args[2];
+                const cityData = await getWeather(city);
+                if (cityData) {
+                    const temp_c = cityData?.current?.temp_c;
+                    const image = "https://" + cityData?.current?.condition?.icon.split('//')[1];
+                    const exampleEmbed = new MessageEmbed()
+                        .setColor('BLUE')
+                        .setTitle(`CLIMA DE ${cityData?.location?.name}`)
+                        .setDescription(`Hola. ${message.author.username}, el clima actual de ${cityData.location.name} es: ${temp_c}°. ${"\n"} ${temp_c <= 15 ? "Un clima bastante agradable e intersubjetivo. 🥶" : "Este clima es intriseco para cada individuo. 🔥"} `)
+                        .setImage(image)
+                        .setTimestamp()
+                        .setFooter('Made by Betoml5');
+
+                    message.channel.send({ embeds: [exampleEmbed] });
+                } else {
+                    message.channel.send("No encontre datos de esta ciudad.")
+                }
+            }
+        } else {
+            message.channel.send("Necesito una ciudad, pais o region")
+        }
+
+
+
+
+
+    }
 
     if (cmd == "llorar") {
         const lmt = 56;
@@ -186,6 +247,16 @@ client.on('messageCreate', async message => {
 
         message.channel.send({ embeds: [exampleEmbed] });
     }
+
+    if (cmd == "intrinseco") {
+        message.channel.send("Es que es lo mismo wey, es exactamente lo mismooo!!! Es una construcción intersubjetiva a la que le adjudicas un valor intrínseco y la persigues, osea el hecho de que la gente se forme para tocar una piedra weeey es lo mismo a que la gente se forme a tomarse una foto con un espejo, es lo mismoOOo")
+    }
+
+    if (cmd == "pio") {
+        message.reply("pio")
+    }
+
+
 });
 
 client.login('ODk5MTY5NDY3Nzg1OTM2OTE3.YWu20g.wvNQ5Lp8UqSblubjSXcKFYhpZ0g');
