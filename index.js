@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const { Client, Intents, MessageEmbed } = require("discord.js");
 const { config } = require("./config");
 const fetch = require("node-fetch");
@@ -121,7 +124,8 @@ client.on("messageCreate", async (message) => {
     const gif = await getCryGif();
     const randomNumber = Math.floor(Math.random() * gif.results.length);
 
-    const exampleEmbed = new MessageEmbed()
+    if(args[1]){
+        const exampleEmbed = new MessageEmbed()
       .setColor("RED")
       .setTitle(
         `${message.author.username} hizo llorar a ${
@@ -134,6 +138,9 @@ client.on("messageCreate", async (message) => {
       .setFooter("Made by Betoml5");
 
     message.channel.send({ embeds: [exampleEmbed] });
+    } else{
+        message.channel.send("Necesito a alguien para hacerlo llorar. Intriseco")
+    }
   }
 
   if (cmd == "punch") {
