@@ -196,7 +196,7 @@ client.on("messageCreate", async (message) => {
             "https://" + cityData?.current?.condition?.icon.split("//")[1];
           const exampleEmbed = new MessageEmbed()
             .setColor("BLUE")
-            .setTitle(`CLIMA DE ${cityData?.location?.name}`)
+            .setTitle(`Clima de ${cityData?.location?.name}`)
             .setDescription(
               `Hola. ${message.author.username}, el clima actual de ${
                 cityData.location.name
@@ -242,8 +242,8 @@ client.on("messageCreate", async (message) => {
 
     const exampleEmbed = new MessageEmbed()
       .setColor("RED")
-      .setTitle(`${message.author.username} le gustan los gatxs`)
-      .setDescription(`${message.author.username} no asume generxs`)
+      .setTitle(`${message.author.username} le gustan los gatos`)
+      .setDescription(`${message.author.username} Este gato esta bonito`)
       .setImage(gif.results[randomNumber].media[0].gif.url)
       .setTimestamp()
       .setFooter("Made by Betoml5");
@@ -253,8 +253,27 @@ client.on("messageCreate", async (message) => {
 
   if (cmd == "intrinseco") {
     message.channel.send(
-      "Es que es lo mismo wey, es exactamente lo mismooo!!! Es una construcción intersubjetiva a la que le adjudicas un valor intrínseco y la persigues, osea el hecho de que la gente se forme para tocar una piedra weeey es lo mismo a que la gente se forme a tomarse una foto con un espejo, es lo mismoOOo"
+      "Es que es lo mismo wey, es exactamente lo mismooo!!! Es una construcción intersubjetiva a la que le adjudicas un valor intrínseco y la persigues, o sea el hecho de que la gente se forme para tocar una piedra weeey es lo mismo a que la gente se forme a tomarse una foto con un espejo, es lo mismoOoOO"
     );
+  }
+
+  if (cmd == "comandos") {
+    const exampleEmbed = new MessageEmbed()
+      .setColor("RED")
+      .setTitle("COMANDOS")
+      .setDescription(
+        `!punch @user - Golpea a alguien
+        !kiss @user - Besa a alguien
+        !hug @user - Abrazar a alguien
+        !kill @user - Mata a alguien
+        !wink @user - Coquetear con alguien
+        !slap @user - Bofetea a alguien
+        !clima Saltillo - Te dice el clima de Saltillo o cualquier ciudad
+        !cat - Foto de gato`
+      )
+      .setTimestamp()
+      .setFooter("Made by Betoml5");
+    message.channel.send({ embeds: [exampleEmbed] });
   }
 
   if (cmd == "presentacion") {
@@ -274,10 +293,6 @@ client.on("messageCreate", async (message) => {
       .setFooter("Made by Betoml5");
 
     message.channel.send({ embeds: [exampleEmbed] });
-  }
-
-  if (cmd == "pio") {
-    message.reply("pio");
   }
 });
 
