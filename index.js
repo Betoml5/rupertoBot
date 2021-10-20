@@ -81,6 +81,83 @@ client.on("messageCreate", async (message) => {
     }
   }
 
+  if (cmd == "kiss") {
+    const { image } = await API.sfw.kiss();
+    if (message.mentions.members.first()) {
+      const exampleEmbed = new MessageEmbed()
+        .setColor("RED")
+        .setImage(image)
+        .setTitle(
+          `${message.author.username} beso a ${
+            message.mentions.users.first().username
+          }`
+        )
+        .setTimestamp()
+        .setFooter("Made by Betoml5");
+      message.channel.send({ embeds: [exampleEmbed] });
+    } else {
+      message.channel.send("Tagea a alguien para besar");
+    }
+  }
+
+  if (cmd == "slap") {
+    const { image } = await API.sfw.slap();
+    if (message.mentions.members.first()) {
+      const exampleEmbed = new MessageEmbed()
+        .setColor("RED")
+        .setImage(image)
+        .setTitle(
+          `${message.author.username} golpeo a ${
+            message.mentions.users.first().username
+          }`
+        )
+        .setTimestamp()
+        .setFooter("Made by Betoml5");
+      message.channel.send({ embeds: [exampleEmbed] });
+    } else {
+      message.channel.send("Tagea a alguien para golpear");
+    }
+  }
+
+  if (cmd == "kill") {
+    const { image } = await API.sfw.kill();
+    console.log(image);
+    if (message.mentions.members.first()) {
+      const exampleEmbed = new MessageEmbed()
+        .setColor("RED")
+        .setImage(image)
+        .setTitle(
+          `${message.author.username} mato a ${
+            message.mentions.users.first().username
+          }`
+        )
+        .setTimestamp()
+        .setFooter("Made by Betoml5");
+      message.channel.send({ embeds: [exampleEmbed] });
+    } else {
+      message.channel.send("Tagea a alguien para matar");
+    }
+  }
+
+  if (cmd == "wink") {
+    const { image } = await API.sfw.wink();
+    if (message.mentions.members.first()) {
+      const exampleEmbed = new MessageEmbed()
+        .setColor("RED")
+        .setImage(image)
+        .setTitle(
+          `${message.author.username} es un coqueto con ${
+            message.mentions.users.first().username
+          }`
+        )
+        .setTimestamp()
+        .setFooter("Made by Betoml5");
+      message.channel.send({ embeds: [exampleEmbed] });
+    } else {
+      message.channel.send("Tagea a alguien para coquetear");
+    }
+  }
+
   if (cmd == "clima") {
     if (args[1] != "") {
       if (args[1] && args[2]) {
