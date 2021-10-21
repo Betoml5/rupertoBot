@@ -146,7 +146,7 @@ client.on("messageCreate", async (message) => {
         .setColor("RED")
         .setImage(image)
         .setTitle(
-          `${message.author.username} es un coqueto con ${
+          `${message.author.username} esta coqueteando con ${
             message.mentions.users.first().username
           }`
         )
@@ -269,7 +269,9 @@ client.on("messageCreate", async (message) => {
         !wink @user - Coquetear con alguien
         !slap @user - Bofetea a alguien
         !clima Saltillo - Te dice el clima de Saltillo o cualquier ciudad
-        !cat - Foto de gato`
+        !cat - Foto de gato
+        !intrinseco - Te dice una frase mamadora de Ruperto Martinez
+        !presentacion - Ruperto Martinez se presenta`
       )
       .setTimestamp()
       .setFooter("Made by Betoml5");
