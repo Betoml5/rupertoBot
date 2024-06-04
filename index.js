@@ -14,6 +14,14 @@ const client = new Client({
   ],
 });
 
+const returnReaction = async (reaction) => {
+  const response = await fetch(
+    `https://api.otakugifs.xyz/gif?reaction=${reaction}&format=gif`
+  );
+  const { url } = await response.json();
+  return url;
+};
+
 if (!globalThis.fetch) {
   globalThis.fetch = fetch;
 }
@@ -22,7 +30,7 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const prefix = "!"; // just an example, change to whatever you want
+const prefix = "!"; //
 var apikey = "0AY2GAYCRBBG";
 
 const getWeather = async (city) => {
@@ -44,7 +52,7 @@ client.on("messageCreate", async (message) => {
   const cmd = args[0].slice(prefix.length).toLowerCase(); // case INsensitive, without prefix
 
   if (cmd == "hug") {
-    const { image } = await API.sfw.hug();
+    const image = await returnReaction("hug");
     if (message.mentions.members.first()) {
       const exampleEmbed = new MessageEmbed()
         .setColor("RED")
@@ -63,7 +71,7 @@ client.on("messageCreate", async (message) => {
   }
 
   if (cmd == "punch") {
-    const { image } = await API.sfw.punch();
+    const image = await returnReaction("punch");
     if (message.mentions.members.first()) {
       const exampleEmbed = new MessageEmbed()
         .setColor("RED")
@@ -82,7 +90,7 @@ client.on("messageCreate", async (message) => {
   }
 
   if (cmd == "kiss") {
-    const { image } = await API.sfw.kiss();
+    const image = await returnReaction("kiss");
     if (message.mentions.members.first()) {
       const exampleEmbed = new MessageEmbed()
         .setColor("RED")
@@ -101,7 +109,7 @@ client.on("messageCreate", async (message) => {
   }
 
   if (cmd == "slap") {
-    const { image } = await API.sfw.slap();
+    const image = await returnReaction("slap");
     if (message.mentions.members.first()) {
       const exampleEmbed = new MessageEmbed()
         .setColor("RED")
@@ -120,8 +128,7 @@ client.on("messageCreate", async (message) => {
   }
 
   if (cmd == "kill") {
-    const { image } = await API.sfw.kill();
-    console.log(image);
+    const image = await returnReaction("kill");
     if (message.mentions.members.first()) {
       const exampleEmbed = new MessageEmbed()
         .setColor("RED")
@@ -140,7 +147,7 @@ client.on("messageCreate", async (message) => {
   }
 
   if (cmd == "wink") {
-    const { image } = await API.sfw.wink();
+    const image = await returnReaction("wink");
     if (message.mentions.members.first()) {
       const exampleEmbed = new MessageEmbed()
         .setColor("RED")
@@ -268,7 +275,7 @@ client.on("messageCreate", async (message) => {
         !kill @user - Mata a alguien
         !wink @user - Coquetear con alguien
         !slap @user - Bofetea a alguien
-        !clima Saltillo - Te dice el clima de Saltillo o cualquier ciudad
+        !clima Nueva Rosita - Te dice el clima de Nueva Rosita o cualquier ciudad
         !cat - Foto de gato
         !intrinseco - Te dice una frase mamadora de Ruperto Martinez
         !presentacion - Ruperto Martinez se presenta`
@@ -297,5 +304,4 @@ client.on("messageCreate", async (message) => {
     message.channel.send({ embeds: [exampleEmbed] });
   }
 });
-
 client.login(config.discordToken);
